@@ -21,7 +21,7 @@ export default async function RefundsPage({searchParams}:IProps) {
     }
   return (
     <div className="px-2">
-      {data?.refundOrders && <RefundsContainer refundOrders={data.refundOrders}/>}
+      {data?.refundOrders && <RefundsContainer refundOrders={data.refundOrders} totalPages={data?.totalPages} page={Number(currentPage)}/>}
     </div>
   )
 }
