@@ -68,7 +68,7 @@ Installation & Setup
 
 Clone the repository:
 
-git clone https://github.com/mohamedeld/refund-orders-dashboard.git
+git clone https://github.com/mohamedeld/task-refends-app.git
 cd refund-orders-dashboard
 
 Install dependencies:
