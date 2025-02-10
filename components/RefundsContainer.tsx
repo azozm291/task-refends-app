@@ -7,10 +7,13 @@ import Image from "next/image";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "./ui/button";
 import { RefundForm } from "./RefundForm";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import CustomPagaintion from "./CustomPagaintion";
 
 interface IProps{
-    refundOrders:RefundOrder[]
+    refundOrders:RefundOrder[];
+    totalPages:number;
+    page:number;
 }
 
 
@@ -25,11 +28,11 @@ const columns: Column<RefundOrder>[] = [
     },
     { header: "Amount", accessorKey: "amount", cell: (item) => `$${item.amount.toFixed(2)}` },
     { header: "Status", accessorKey: "active", cell: (item) => (item.active ? "Active" : "Inactive") },
-    { header: "Decision", accessorKey: "decision", cell: (item) => item.decision || "Not yet" },
+    { header: "Decision", accessorKey: "decision", cell: (item) => item.decision ? item.decision : "Not yet" },
     { header: "Items", accessorKey: "items", cell: (item) => item.items.length },
   ]
 
-const RefundsContainer = ({refundOrders}:IProps) => { 
+const RefundsContainer = ({refundOrders,totalPages,page}:IProps) => { 
   const router = useRouter()
   const [isModalOpen,setIsModalOpen] = useState(false)
 
@@ -38,6 +41,10 @@ const RefundsContainer = ({refundOrders}:IProps) => {
   const handleViewDetails = (id: string) => {
     router.push(`/refunds/${id}`)
   }
+  const handlePageChange = useCallback((page: number) => {
+    router.push(`/refunds?page=${page}`); // Update the URL with the new page
+},[router]);
+
   return (
     <div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8">
@@ -59,7 +66,7 @@ const RefundsContainer = ({refundOrders}:IProps) => {
         columns={columns}
         onViewDetails={handleViewDetails}
       />
-      
+      {totalPages > 1 && <CustomPagaintion handlePageChange={handlePageChange} currentPage={page} totalPages={totalPages} />}
     </div>
   )
 }
