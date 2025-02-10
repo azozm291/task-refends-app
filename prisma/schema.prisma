@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model RefundOrder {
+  id         String       @id @default(cuid())
+  reason     String
+  store_name String
+  store_logo String
+  store_url  String
+  amount     Float
+  active     Boolean      @default(true)
+  decision   String?
+  items      RefundItem[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+}
+
+model RefundItem {
+  id        String      @id @default(cuid())
+  name      String
+  price     Float
+  quantity  Int
+  orderId   String
+  order     RefundOrder @relation(fields: [orderId], references: [id])
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
