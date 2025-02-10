@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Refund Orders Dashboard
 
-## Getting Started
+Overview
 
-First, run the development server:
+This project is a Refund Orders Dashboard built with Next.js. It includes a navigation sidebar and a table displaying a list of refund orders. The application supports actions such as updating order decisions, toggling the active status, and viewing order details. The table is reusable, dynamic, and supports pagination.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigation Sidebar for easy access to different sections.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Reusable Table Component that supports:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Dynamic columns and data types.
 
-## Learn More
+Custom actions for each row.
 
-To learn more about Next.js, take a look at the following resources:
+Live updates without page reloads.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Refund Orders Table with the following data:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+ID (string)
 
-## Deploy on Vercel
+Reason (string)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Store Name, Logo, and URL
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Amount (number)
+
+Active Status (boolean)
+
+Decision (default: "Not Yet")
+
+Items Count (displayed as a number)
+
+Actions Per Row:
+
+Dropdown menu to update decision (Reject, Accept, Escalate)
+
+Toggle switch to activate/deactivate a record
+
+IconButton to navigate to the order detail page
+
+Live Updates: All actions are instantly reflected without reloading the page.
+
+Pagination: Max 15 records per page.
+
+Toaster Notifications: Provides feedback on actions.
+
+Loading & Error Handling for smooth data fetching.
+
+Mock API Integration using JSON Server.
+
+Tech Stack
+
+Next.js (App Router) - Framework for server-side rendering and API handling.
+
+TypeScript - Strongly typed language for maintainable and scalable code.
+
+Tailwind CSS - Styling framework for rapid UI development.
+
+ShadCN/UI - For reusable UI components.
+
+Lucide React - Icons used for UI elements.
+
+Prisma ORM
+
+Installation & Setup
+
+Clone the repository:
+
+git clone https://github.com/mohamedeld/refund-orders-dashboard.git
+cd refund-orders-dashboard
+
+Install dependencies:
+
+npm install  # or yarn install
+
+
+
+Run the development server:
+
+npm run dev  # or yarn dev
+
+Open http://localhost:3000 in your browser.
